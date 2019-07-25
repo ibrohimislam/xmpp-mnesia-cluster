@@ -1,0 +1,18 @@
+version: "3.1"
+services:
+  ejabberd:
+    image: registry.ehealth.id/xmpp
+    build: .
+    ports:
+      - 5222:5222
+      - 5269:5269
+      - 5280:5280
+    secrets:
+      - source: cookie
+        target: /home/ejabberd/.erlang.cookie
+        uid: '9000'
+        gid: '9000'
+        mode: 0400
+secrets:
+  cookie:
+    file: .erlang.cookie
